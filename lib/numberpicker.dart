@@ -503,22 +503,89 @@ class _NumberPickerDialogControllerState extends State<NumberPickerDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return new AlertDialog(
-      title: widget.title,
-      titlePadding: widget.titlePadding,
-      content: _buildNumberPicker(),
-      actions: [
-        new FlatButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: widget.cancelWidget,
-        ),
-        new FlatButton(
-            onPressed: () =>
-                Navigator.of(context).pop(widget.decimalPlaces > 0
-                    ? selectedDoubleValue
-                    : selectedIntValue),
-            child: widget.confirmWidget),
-      ],
-    );
+
+    return Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Container(
+                    height: 280.0,
+                    width: 200.0,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(20.0)),
+                    child: Column(
+                      children: <Widget>[
+                        Stack(
+                          children: <Widget>[
+                            //Container(height: 150.0),
+                            Container(
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(10.0),
+                                  ),
+                                  color: new Color(0xff8e7b26)),
+                            ),
+                            Positioned(
+                                top: 20.0,
+                                left: 24.0,
+                                child: Container(
+                                  height: 90.0,
+                                  width: 200.0,                             
+                                      child: widget.title                            
+                                  ))
+                          ],
+                        ),
+                        Flexible(fit: FlexFit.tight, child: SizedBox()),                                             
+                          _buildNumberPicker(),
+                       Flexible(fit: FlexFit.tight, child: SizedBox()),
+                        Row(children: <Widget>[
+                          Expanded(child: new GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: widget.cancelWidget)),
+                          Expanded(child: new GestureDetector(
+                    onTap: () => Navigator.of(context).pop(widget.decimalPlaces > 0
+                      ? selectedDoubleValue
+                      : selectedIntValue),
+                    child: widget.confirmWidget)),
+                        ],)
+                        
+                       
+                      ],
+                    )));
+
+
+
+    // return new AlertDialog(
+    //   elevation: 2,
+    //   title: widget.title,
+    //   titlePadding: widget.titlePadding,
+    //   content: _buildNumberPicker(),
+    //   contentPadding: const EdgeInsets.all(0.0),
+    //   actions: [ 
+
+    //     Container(
+    //       padding: const EdgeInsets.all(0.0),
+    //           height: 80.0,
+    //           width: 300.0,
+              
+    //     child: Row(
+    //       //padding: const EdgeInsets.all(0.0),
+    //       children: <Widget>[
+    //         Expanded(child: new GestureDetector(
+    //           onTap: () => Navigator.of(context).pop(),
+    //           child:widget.cancelWidget,
+    //                 )),
+    //         Expanded( child: new GestureDetector(
+    //           onTap: () =>  Navigator.of(context).pop(widget.decimalPlaces > 0
+    //                   ? selectedDoubleValue
+    //                   : selectedIntValue),
+    //           child:widget.confirmWidget,
+    //                 )),
+
+    //       ]
+    //     )),
+    //   ],
+    // );
   }
 }
