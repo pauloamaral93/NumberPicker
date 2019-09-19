@@ -543,7 +543,7 @@ class _NumberPickerDialogControllerState extends State<NumberPickerDialog> {
                           Expanded(child: new GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: widget.cancelWidget)),
-                          VerticalDivider(width:ScreenManager.singleton.font(1),indent: 1),
+                          VerticalDivider(width:1,indent: 1),
                           Expanded(child: new GestureDetector(
                     onTap: () => Navigator.of(context).pop(widget.decimalPlaces > 0
                       ? selectedDoubleValue
